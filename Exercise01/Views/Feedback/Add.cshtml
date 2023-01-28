@@ -1,0 +1,84 @@
+﻿@model Feedback
+
+<h1>Courseware Feedback Form</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        Student Name: 
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="StudentName" class="form-control" />
+                    </div>
+                </div>
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        Sex:
+                    </div>
+                    <div class="col-6">
+                        <input type="radio" asp-for="Sex" value="@Sex.Male" checked/>@Sex.Male<br />
+                        <input type="radio" asp-for="Sex" value="@Sex.Female"/>@Sex.Female<br />
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        Select a course:
+                    </div>
+                    <div class="col-6">
+                        <select asp-for="Course" asp-items="@Courses.CoursesDropdown" class="form-select">
+                            <option disabled>--Selected Course--</option>
+                        </select>
+                        <span asp-validation-for="Course" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        Technical coverage:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <select asp-for="TechnicalCoverage" asp-items="@TechnicalCoverages.TechnicalCoverageDropdown" class="form-select">
+                            <option disabled>--Selected Technical Coverage--</option>
+                        </select>
+                        <span asp-validation-for="TechnicalCoverage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        Suggestions:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <textarea asp-for="@Model.Suggestions" type="text" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Suggestions" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <input type="submit" value="Add" class="btn btn-primary"/>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
