@@ -1,0 +1,8 @@
+﻿@model Feedback
+
+<h4>@($"Thank you for the feedback, {(Model.Sex == "Male" ? "Mr." : "Ms.")} {Model.StudentName}")</h4>
+
+<form asp-action="Index" asp-controller="Feedback">
+    <input type="submit" value="Back to the main page" class="btn btn-primary"/>
+</form>
+

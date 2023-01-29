@@ -31,7 +31,7 @@
                         <td width="@(100.0 / itemprops.Count() + 1)%">@property.GetValue(item, null)</td>
                     }
                     <td width="@(100.0 / itemprops.Count() + 1)%">
-                        <a asp-controller="Feedback" asp-action="Delete" class="btn btn-primary mx-2">
+                        <a asp-controller="Feedback" asp-route-Id="@item.Id" asp-action="Delete" class="btn btn-danger mx-2">
                             Delete
                         </a>
                     </td>

@@ -30,9 +30,48 @@ namespace Exercise01.Controllers
             {
                 _context.Feedbacks.Add(feedback);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Thanks), new { Id = feedback.Id });
             }
             return View();
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0) 
+            {
+                return NotFound();
+            }
+            Feedback feedback = _context.Feedbacks.FirstOrDefault(x => x.Id == id);
+            if (feedback == null)
+            {
+                return NotFound();
+            }
+            return View(feedback);
+        }
+
+        [ValidateAntiForgeryToken, HttpPost]
+        public IActionResult Delete(Feedback feedback)
+        {
+            if (feedback != null)
+            {
+                _context.Feedbacks.Remove(feedback);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Thanks(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Feedback feedback = _context.Feedbacks.FirstOrDefault(x => x.Id == id);
+            if (feedback == null)
+            {
+                return NotFound();
+            }
+            return View(feedback);
         }
     }
 }
